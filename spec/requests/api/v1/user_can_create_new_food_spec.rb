@@ -13,4 +13,10 @@ describe 'POST /api/v1/foods' do
     expect(food['name']).to eq('Apple')
     expect(food['calories']).to eq(220)
   end
+  it 'returns 400 if not successful' do
+    payload = { "food": { "name": "Apple", "calories": 'a number'} }
+    post "/api/v1/foods", params: payload
+
+    expect(response.status).to eq(400)
+  end
 end
