@@ -12,4 +12,13 @@ class Api::V1::FoodsController < ApplicationController
     end
   end
 
+  def create
+    food = Food.new(name: params[:food][:name], calories: params[:food][:calories].to_i)
+    if food.save
+      render json: food
+    else
+      render status: 400
+    end
+  end
+
 end
