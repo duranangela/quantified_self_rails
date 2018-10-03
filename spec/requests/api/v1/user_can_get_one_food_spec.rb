@@ -5,13 +5,17 @@ describe 'GET /api/v1/foods/:id' do
     food = create(:food)
 
     get "/api/v1/foods/#{food.id}"
-
     expect(response).to be_successful
 
     food = JSON.parse(response.body)
 
-    expect(foods[0]['id']).to eq(1)
-    expect(foods[0]['name']).to be_a(String)
-    expect(foods[0]['calories']).to be_a(Integer)
+    expect(food['id']).to eq(1)
+    expect(food['name']).to be_a(String)
+    expect(food['calories']).to be_a(Integer)
+  end
+  it 'renders a 404 if food id not found' do
+    get "/api/v1/foods/1"
+
+    expect(response.status).to eq(404)
   end
 end
