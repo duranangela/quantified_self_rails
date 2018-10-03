@@ -11,5 +11,8 @@ describe 'GET /api/v1/foods' do
     foods = JSON.parse(response.body)
 
     expect(foods.count).to eq(3)
+    expect(foods[0]['id']).to eq(1)
+    expect(foods[0]['name']).to be_a(String)
+    expect(foods[0]['calories']).to be_a(Integer)
   end
 end
