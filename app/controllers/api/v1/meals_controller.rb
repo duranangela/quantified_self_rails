@@ -7,5 +7,5 @@ class Api::V1::MealsController < ApplicationController
   def show
     render json: Meal.find(params[:meal_id])
   end
-  
+
 end

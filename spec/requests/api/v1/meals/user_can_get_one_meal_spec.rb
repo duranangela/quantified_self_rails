@@ -18,4 +18,9 @@ describe 'GET /api/v1/meals/:meal_id/foods' do
     expect(meal['foods'][0]['name']).to eq(food1.name)
     expect(meal['foods'][0]['calories']).to eq(food1.calories)
   end
+  it 'renders a 404 if food id not found' do
+    get "/api/v1/meals/1/foods"
+
+    expect(response.status).to eq(404)
+  end
 end
