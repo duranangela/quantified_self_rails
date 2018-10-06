@@ -14,4 +14,9 @@ describe 'DELETE /api/v1/meals/:meal_id/foods/:id' do
 
     expect(msg['message']).to eq("Successfully removed #{food.name} from #{meal.name}")
   end
+  it 'returns 404 if meal or food not found' do
+    delete "/api/v1/meals/1/foods/1"
+
+    expect(response.status).to eq(404)
+  end
 end
