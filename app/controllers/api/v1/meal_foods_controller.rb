@@ -11,4 +11,12 @@ class Api::V1::MealFoodsController < ApplicationController
     end
   end
 
+  def destroy
+    meal = Meal.find(params[:meal_id])
+    food = Food.find(params[:id])
+    mealfood = MealFood.where(meal_id: meal.id, food_id: food.id)
+    MealFood.delete(mealfood)
+    render json: {message: "Successfully removed #{food.name} from #{meal.name}"}
+  end
+
 end
