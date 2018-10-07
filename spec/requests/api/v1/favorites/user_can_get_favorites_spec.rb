@@ -20,8 +20,10 @@ describe 'GET /api/v1/favorite_foods' do
     expect(response).to be_successful
 
     foods = JSON.parse(response.body)
-    binding.pry
 
-
+    expect(foods[0]['timesEaten']).to eq(3)
+    expect(foods[0]['foods'][0]['name']).to eq(food1.name)
+    expect(foods[0]['foods'][0]['calories']).to eq(food1.calories)
+    expect(foods[0]['foods'][0]['mealWhenEaten']).to eq(food1.meals.pluck(:name).uniq)
   end
 end
